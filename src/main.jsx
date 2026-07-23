@@ -58,29 +58,29 @@ const sources = [
     name: "Stakeholder register",
     icon: Users,
     image: stakeholderRegisterImg,
-    kicker: "WHO THEY ARE",
-    text: "The stakeholder register and engagement plan reveal role, interest, influence, and current engagement—the baseline for deciding what each person actually needs.",
+    kicker: "Stakeholder Register & Engagement Plan",
+    text: "Captures each stakeholder's role, interest, and current engagement level — the baseline picture of who they are and how involved they currently are.",
   },
   {
     name: "Org chart + RACI",
     icon: Network,
     image: orgChartRaciImg,
-    kicker: "HOW INFORMATION MOVES",
-    text: "Organizational charts and responsibility matrices expose formal relationships, reporting lines, accountability, and the routes updates should follow.",
+    kicker: "Organizational Charts & Responsibility Matrices",
+    text: "Reveal the formal relationships and information flows that govern how updates should actually move through the organization — who reports to whom, and who's accountable for what.",
   },
   {
     name: "Development approach",
     icon: GitBranch,
     image: developmentApproachImg,
-    kicker: "THE OPERATING RHYTHM",
-    text: "Predictive, adaptive, and hybrid delivery create different cadences. A sprint review and a phase-gate report cannot use the same rhythm.",
+    kicker: "Development Approach",
+    text: "Whether the project runs predictive, adaptive, or hybrid shapes the cadence and format communication should take — a weekly sprint review calls for a different rhythm than a phase-gate report.",
   },
   {
     name: "Legal requirements",
     icon: Gavel,
     image: legalRequirementsImg,
-    kicker: "WHEN DISCRETION ENDS",
-    text: "Law or regulation may prescribe exactly what must be communicated, to whom, and in what form. In those cases tailoring begins inside a fixed boundary.",
+    kicker: "Legal Requirements",
+    text: "May specify outright what must be communicated, to whom, and in what form — removing discretion entirely in some cases.",
   },
 ];
 const dimensions = [
@@ -88,54 +88,54 @@ const dimensions = [
     name: "Content",
     icon: FileChartColumn,
     image: contentImg,
-    kicker: "WHAT THEY NEED",
-    text: "Sponsors need strategic progress and ROI signals. Technical teams need issues, dependencies, and specifications. Regulators need evidence. End users need plain-language impact.",
+    kicker: "Content — what does this stakeholder actually need to know?",
+    text: "A sponsor needs strategic progress and ROI signals. A technical team needs issue logs, dependency updates, and technical specifications. A regulator needs compliance evidence tied to defined milestones. End users need to understand what's changing, when, and what it means for them. Same event, four completely different messages.",
   },
   {
     name: "Format",
     icon: FolderKanban,
     image: formatImg,
-    kicker: "HOW IT IS SHAPED",
-    text: "Executives often need concise visual summaries; specialists need detailed documentation; users and communities need jargon-free explanations they can act on.",
+    kicker: "Format — how should it be presented?",
+    text: "PMBOK® 8 identifies communication skills as oral, visual, or electronic. Executive stakeholders typically need concise summaries with visual data. Technical teams may need detailed written documentation. Community or user groups may need plain-language summaries with the project management jargon stripped out entirely.",
   },
   {
     name: "Channel",
     icon: Send,
     image: channelImg,
-    kicker: "HOW IT REACHES THEM",
-    text: "Urgency, sensitivity, location, time zone, and language determine whether the message belongs in a private conversation, meeting, report, database, site, or social channel.",
+    kicker: "Channel — how should it be delivered?",
+    text: "PMBOK® 8 lists conversations, meetings, written documents, databases, social media, and websites as common methods. The right choice depends on urgency, sensitivity, the stakeholder's location, and the working environment — face-to-face or virtual, across time zones, across languages. A sensitive escalation calls for a private conversation; a routine update is well served by a structured report.",
   },
   {
     name: "Frequency",
     icon: RefreshCw,
     image: frequencyImg,
-    kicker: "WHEN IT ARRIVES",
-    text: "High-power, high-interest stakeholders may need weekly touchpoints; peripheral groups may need milestones; regulators may require formal phase-triggered communication.",
+    kicker: "Frequency — how often does this stakeholder need to hear from the project?",
+    text: "High-power, high-interest stakeholders may need weekly touchpoints. Peripheral stakeholders may need only milestone-triggered updates. Regulators may need formal communications tied to phase completions. The goal was never maximum communication — it's the right communication at the right time.",
   },
 ];
 const quiz1 = {
   q: "The same scope change is being communicated to the executive sponsor and the end-user community. What is the correct approach?",
   answers: [
-    "Send both groups the same detailed change-control document",
-    "Tailor content, format, and channel separately for each",
-    "Only inform the sponsor",
-    "Wait for the next newsletter and inform everyone together",
+    "Send both groups the same detailed change-control document — consistency matters most",
+    "Tailor content, format, and channel separately for each — same event, different needs",
+    "Only inform the sponsor; end users don't need to know about scope changes",
+    "Wait until the next scheduled newsletter to inform everyone at once",
   ],
   correct: 1,
-  yes: "Right—identical facts, but the sponsor needs strategic framing while end users need plain-language impact.",
-  no: "Reconsider: the event is the same, but what each audience needs from it is not.",
+  yes: "Right — identical facts, but the sponsor needs strategic/ROI framing while end users need plain-language \"what changes for you\" framing. Sending one version to both is what PMBOK® 8 calls information disposal, not communication.",
+  no: "Reconsider — the underlying event is the same, but what each audience needs from that event isn't.",
 };
 const quiz2 = {
-  q: "Every stakeholder receives the full weekly report, including technical logs, and engagement is dropping. What is happening?",
+  q: "A project manager sends every stakeholder the full weekly status report, including detailed technical logs, regardless of role. Engagement scores are dropping. What's happening?",
   answers: [
-    "The report is not frequent enough",
-    "Over-communication is burying relevant signal",
-    "Stakeholders need even more detail",
-    "Engagement is unrelated to communication",
+    "The report isn't being sent frequently enough",
+    "Over-communication — irrelevant detail is burying what each stakeholder actually needs, so they've stopped reading",
+    "Under-communication — stakeholders need more detail, not less",
+    "Engagement scores are unrelated to communication practices",
   ],
   correct: 1,
-  yes: "Exactly—sending everyone everything buries the signal in irrelevant noise.",
-  no: "Look at the direction of the problem: this is too much undifferentiated information, not too little.",
+  yes: "Exactly — sending everyone everything looks thorough, but it's the over-communication failure mode: relevant signal gets lost in irrelevant noise, and stakeholders disengage rather than read.",
+  no: "Look again at the direction of the problem — this is too much undifferentiated information, not too little.",
 };
 
 function tone(ok, on) {
@@ -192,7 +192,7 @@ function Quiz({ data, sound, onFinish }) {
             {picked === data.correct ? data.yes : data.no}
           </p>
         )}
-        {picked === data.correct && (
+        {picked !== null && (
           <button className="finish-check" onClick={onFinish}>
             Finish check <ArrowRight size={18} />
           </button>
@@ -409,28 +409,20 @@ function App() {
                 {page === 0 && (
                   <div className="comm-hero">
                     <div>
-                      <p className="eyebrow">LESSON 3.3.2 · ANALYZE AND TAILOR COMMUNICATION TO STAKEHOLDER NEEDS</p>
-                      <h1>
-                        Same facts.
-                        <br />
-                        <em>Different receiver.</em>
-                      </h1>
-                      <p>
-                        A doctor does not explain one diagnosis to a patient
-                        with the same vocabulary used for a room of specialists.
-                        The facts stay true. The communication changes.
-                      </p>
+                      <p className="eyebrow">LESSON 3.3.2</p>
+                      <h1>Analyze and Tailor Communication to Stakeholder Needs</h1>
+                      <p>A doctor explaining a diagnosis to a patient doesn't use the same words she'd use presenting that same case to a room full of specialists. Same diagnosis. Same underlying facts. Completely different vocabulary, detail level, and delivery — because using the wrong one on the wrong audience either terrifies the patient or insults the specialists' intelligence.</p>
                       <button
                         className="primary compact-cta"
                         onClick={() => {
                           setReveal(true);
                           setDetail({
-                            title: "Information disposal is not communication",
-                            kicker: "THE STAKE",
+                            title: "Stakeholder communication works exactly the same way",
+                            kicker: "CLICK-TO-REVEAL",
                             icon: Send,
                             image: informationDisposalImg,
-                            text: "ECO People Task 4 asks the project manager to analyze stakeholder power, interest, influence, and impact before communicating. That analysis determines what each stakeholder needs to know, the language and level of detail they can use, the most effective format and channel, and how often communication should occur.",
-                            note: "Sending information is not the same as creating understanding. If the receiver cannot interpret or act on it, the information was disposed of—not communicated.",
+                            text: "Stakeholder communication on a project works exactly the same way. The third enabler of ECO People Task 4, Engage Stakeholders, asks the project manager to analyze and tailor communication — using what the stakeholder analysis already revealed about each stakeholder's power, interest, influence, and impact to determine what information they need, in what format, through what channel, and at what frequency. PMBOK® 8 is blunt about the stakes here: communication that is not tailored to the receiver is not communication — it is information disposal.",
+                            note: "Communication that is not tailored to the receiver is not communication — it is information disposal.",
                           });
                         }}
                       >
@@ -446,25 +438,19 @@ function App() {
                 {page === 1 && (
                   <div className="calibration">
                     <div>
-                      <p className="eyebrow">TAILORING IS CONTINUOUS</p>
-                      <h2>
-                        A communication plan can <em>drift too.</em>
-                      </h2>
-                      <p>
-                        Stakeholders change. New parties join. Project phases
-                        alter the rhythm. A tailoring decision made at kickoff
-                        cannot remain correct forever.
-                      </p>
+                      <p className="eyebrow">SCREEN 2</p>
+                      <h2>Tailoring Is Not a One-Time Task</h2>
+                      <p>It would be convenient if tailoring communication were something you decided once, during planning, and never touched again. It isn't — and treating it that way is one of the quieter ways stakeholder engagement quietly breaks down.</p>
                       <button
                         className="primary compact-cta"
                         onClick={() => {
                           setReveal(true);
                           setDetail({
-                            title: "Keep recalibrating",
-                            kicker: "NOT A ONE-TIME SETTING",
+                            title: "Tailoring must be reviewed and adjusted continuously",
+                            kicker: "CLICK-TO-REVEAL",
                             icon: SlidersHorizontal,
                             image: continuousRecalibrationImg,
-                            text: "Tailoring is a continuous assessment, not a kickoff decision. Review and adjust the approach as stakeholders join or leave, influence changes, project phases alter the required rhythm, and feedback reveals that a channel or format is no longer working. A static plan quietly drifts away from the audience it was designed to serve.",
+                            text: "As stakeholder needs shift, as new parties join, and as the project moves through phases, the communication approach has to be reviewed and adjusted continuously. A tailoring plan built at kickoff and never revisited will drift out of step with the stakeholders it was built for — the same way any other plan does when the project around it keeps changing and the plan doesn't.",
                           });
                         }}
                       >
@@ -479,8 +465,8 @@ function App() {
                 )}
                 {page === 2 && (
                   <Explorer
-                    title="Four places reveal what stakeholders need."
-                    lede="Open each source, read its role, then mark it complete."
+                    title="Analyzing Communication Requirements"
+                    lede="Before anything can be tailored, the project manager first has to understand what each stakeholder actually needs to know — and PMBOK® 8 points to four specific places to find that answer."
                     items={sources}
                     open={sourceOpen}
                     seen={sourceSeen}
@@ -492,14 +478,15 @@ function App() {
                 {page === 3 && (
                   <>
                     <Explorer
-                      title="Tailor every message across four dimensions."
-                      lede="The same event needs a different version for each receiver."
+                      title="Four Dimensions to Tailor"
+                      lede="Once the requirements are understood, tailoring itself comes down to four dimensions — and the same underlying event, say a scope change or a delay, needs a completely different version of each one depending on who's receiving it. Click each to explore."
                       items={dimensions}
                       open={dimOpen}
                       seen={dimSeen}
                       setOpen={setDimOpen}
                       openItem={openItem}
                     />
+                    {dimSeen.length === 4 && <div className="backing">PMBOK® 8 also names communication styles assessment as a specific technique for stakeholders who are unsupportive or resistant — assessing their preferred communication style to spot gaps in engagement and determine which tailored activities would actually move them toward alignment.</div>}
                     {dimSeen.length === 4 && !q1 && (
                       <button
                         className="knowledge-check-cta"
@@ -512,22 +499,22 @@ function App() {
                 )}
                 {page === 4 && (
                   <div className="wide">
-                    <p className="eyebrow">TWO WAYS TO FAIL</p>
-                    <h2>Too little and too much land in the same place.</h2>
-                    <p className="lede">Flip both cards to see why.</p>
+                    <p className="eyebrow">SCREEN 5</p>
+                    <h2>Why Tailoring Matters: Two Ways to Get It Wrong</h2>
+                    <p className="lede">PMBOK® 8 is explicit that stakeholder satisfaction depends on continuous communication. But "continuous" without "tailored" doesn't protect anyone — it just fails in one of two predictable directions. Flip both cards to see them.</p>
                     <div className="flip-grid">
                       {[
                         {
                           name: "Under-communication",
                           icon: MailWarning,
                           image: underCommunicationCard,
-                          text: "Stakeholders receive too little, too late, or nothing. Decisions arrive without context, risks are discovered after they become problems, and people learn through the grapevine instead of the project. Trust erodes because silence is interpreted as exclusion or concealment.",
+                          text: "Leaving stakeholders without the information they need to make decisions or stay engaged. They're informed too late, too little, or not at all — and find out through the grapevine instead of through the project.",
                         },
                         {
                           name: "Over-communication",
                           icon: FolderKanban,
                           image: overCommunicationCard,
-                          text: "Every stakeholder receives every detail, regardless of relevance or decision authority. Message volume becomes noise, people stop reading, and the few signals that genuinely require attention disappear inside routine information.",
+                          text: "Flooding stakeholders with information irrelevant to their role until they stop reading entirely. The signal that actually matters gets buried in noise they've learned to tune out.",
                         },
                       ].map((f, i) => {
                         const I = f.icon;
@@ -558,10 +545,7 @@ function App() {
                     </div>
                     {flips.length === 2 && (
                       <div className="backing">
-                        Both failures leave stakeholders effectively uninformed
-                        when it matters. Tailoring is the discipline of putting
-                        the right signal—in an usable form—in front of the right
-                        person at the right time.
+                        Both failure modes land in the exact same place: stakeholders who aren't informed when they need to be, decisions made without the right input, and resistance that builds quietly until it surfaces as a visible problem. Tailored communication is what prevents both at once — it puts the right information in front of the right stakeholder, at the right moment, in a format they can use, through a channel they'll actually access.
                       </div>
                     )}
                     {flips.length === 2 && !q2 && (
@@ -581,32 +565,28 @@ function App() {
                       alt="One project update tailored into concise executive, detailed technical, and plain-language community outputs"
                     />
                     <div>
-                      <p className="eyebrow">
-                        EXAM LENS · RIGHT MESSAGE, RIGHT RECEIVER
-                      </p>
-                      <h2>One approach cannot serve every stakeholder.</h2>
-                      <p className="lede">Effective communication preserves the facts while changing the message so each receiver can understand it, trust it, and use it.</p>
+                      <p className="eyebrow">SCREEN 6 · SYNTHESIS (EXAM LENS)</p>
+                      <h2>Every stakeholder on a project sits in a different seat, with a different stake in the outcome — and one idea underlies everything this enabler is testing for.</h2>
                       <button
                         className="primary compact-cta"
                         onClick={() => setDone(true)}
                       >
                         {done
                           ? "Communication tailored"
-                          : "Reveal the exam rules"}
+                          : "Reveal the synthesis"}
                         <Sparkles />
                       </button>
                       {done && (
+                        <>
+                        <p className="exam-synthesis">A single communication approach cannot serve all of them. Analyze communication requirements. Understand what each stakeholder needs to know, in what format, through what channel, and at what frequency. Then tailor accordingly — and revisit that tailoring as the project evolves and stakeholder needs shift. Communication that isn't tailored to the receiver isn't communication at all — it's information landing in the wrong place, in the wrong form, at the wrong time, producing exactly the friction good stakeholder engagement exists to prevent.</p>
+                        <h3>Exam-relevant enablers to remember:</h3>
                         <ul>
-                          <li>
-                            Tailor content, format, channel, and frequency.
-                          </li>
-                          <li>
-                            Use the register, org/RACI, development approach,
-                            and legal requirements.
-                          </li>
-                          <li>Avoid both under- and over-communication.</li>
-                          <li>Revisit tailoring as the project evolves.</li>
+                          <li>Tailoring rests on four dimensions: content, format, channel, frequency — all four, not just one</li>
+                          <li>Requirements come from the stakeholder register, org charts/RACI, development approach, and legal requirements</li>
+                          <li>Under-communication and over-communication are both failures — the goal is right information, not maximum information</li>
+                          <li>Tailoring is continuous, revisited as stakeholders, phases, and needs change</li>
                         </ul>
+                        </>
                       )}
                     </div>
                   </div>
@@ -696,8 +676,7 @@ function Explorer({ title, lede, items, open, seen, setOpen, openItem, stat }) {
         <div className="stat-callout">
           <b>190</b>
           <span>
-            A project with 20 stakeholders has up to 190 possible communication
-            paths.
+            The number of potential communication channels matters too. A project with 20 stakeholders has up to 190 possible communication paths. Not all of them are relevant — but understanding the size of that network is what prevents both communication gaps and communication overload.
           </span>
           <Network />
         </div>
