@@ -108,3 +108,13 @@ button:focus-visible,input:focus-visible{outline:3px solid #007bff;outline-offse
 .exam-synthesis{margin:18px 0;color:#475569;line-height:1.6}
 .exam h3{margin:20px 0 8px;font-size:17px}
 @media(max-width:800px){.page-4 .illustrated-flip>.flip{height:420px}}
+/* Stable synthesis review modal */
+.synthesis-modal{overflow-y:auto}
+.synthesis-modal-content{color:#475569;line-height:1.6}
+.synthesis-modal-content>p{margin:0}
+.synthesis-modal-content h4{margin:22px 0 8px;color:#0f172a;font-size:16px}
+.synthesis-modal-content ul{list-style:none;margin:0;padding:0}
+.synthesis-modal-content li{position:relative;border-bottom:1px solid #e2e8f0;padding:11px 0 11px 26px}
+.synthesis-modal-content li:before{content:"✓";position:absolute;left:0;color:#16a34a;font-weight:800}
+.synthesis-modal .modal-close-bottom{position:sticky;bottom:0}
+@media(max-width:600px){.synthesis-modal{width:100%;height:100%;max-height:none;border-radius:0}}

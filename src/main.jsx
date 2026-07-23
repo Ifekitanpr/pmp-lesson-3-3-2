@@ -28,6 +28,7 @@ import {
   X,
 } from "lucide-react";
 import "./styles.css";
+import SynthesisModal from "./SynthesisModal";
 import audienceTailoringImg from "./assets/illustrations/audience-tailoring.png";
 import calibrationImg from "./assets/illustrations/continuous-calibration.png";
 import failuresImg from "./assets/illustrations/communication-failures.png";
@@ -277,7 +278,8 @@ function App() {
     [q1, setQ1] = useState(false),
     [q2, setQ2] = useState(false),
     [detail, setDetail] = useState(null),
-    [done, setDone] = useState(false);
+    [done, setDone] = useState(false),
+    [synthesisOpen, setSynthesisOpen] = useState(false);
   useEffect(() => {
     setReveal(false);
     setQuiz(null);
@@ -569,25 +571,12 @@ function App() {
                       <h2>Every stakeholder on a project sits in a different seat, with a different stake in the outcome — and one idea underlies everything this enabler is testing for.</h2>
                       <button
                         className="primary compact-cta"
-                        onClick={() => setDone(true)}
+                        disabled={done}
+                        onClick={() => setSynthesisOpen(true)}
                       >
-                        {done
-                          ? "Communication tailored"
-                          : "Reveal the synthesis"}
+                        {done ? "Synthesis reviewed" : "Reveal the synthesis"}
                         <Sparkles />
                       </button>
-                      {done && (
-                        <>
-                        <p className="exam-synthesis">A single communication approach cannot serve all of them. Analyze communication requirements. Understand what each stakeholder needs to know, in what format, through what channel, and at what frequency. Then tailor accordingly — and revisit that tailoring as the project evolves and stakeholder needs shift. Communication that isn't tailored to the receiver isn't communication at all — it's information landing in the wrong place, in the wrong form, at the wrong time, producing exactly the friction good stakeholder engagement exists to prevent.</p>
-                        <h3>Exam-relevant enablers to remember:</h3>
-                        <ul>
-                          <li>Tailoring rests on four dimensions: content, format, channel, frequency — all four, not just one</li>
-                          <li>Requirements come from the stakeholder register, org charts/RACI, development approach, and legal requirements</li>
-                          <li>Under-communication and over-communication are both failures — the goal is right information, not maximum information</li>
-                          <li>Tailoring is continuous, revisited as stakeholders, phases, and needs change</li>
-                        </ul>
-                        </>
-                      )}
                     </div>
                   </div>
                 )}
@@ -626,6 +615,25 @@ function App() {
           onClose={() => setDetail(null)}
           onRead={markRead}
         />
+      )}
+      {synthesisOpen && (
+        <SynthesisModal
+          title="Tailor communication to the receiver"
+          onClose={() => setSynthesisOpen(false)}
+          onReviewed={() => {
+            setDone(true);
+            setSynthesisOpen(false);
+          }}
+        >
+          <p>A single communication approach cannot serve all of them. Analyze communication requirements. Understand what each stakeholder needs to know, in what format, through what channel, and at what frequency. Then tailor accordingly — and revisit that tailoring as the project evolves and stakeholder needs shift. Communication that isn't tailored to the receiver isn't communication at all — it's information landing in the wrong place, in the wrong form, at the wrong time, producing exactly the friction good stakeholder engagement exists to prevent.</p>
+          <h4>Exam-relevant enablers to remember:</h4>
+          <ul>
+            <li>Tailoring rests on four dimensions: content, format, channel, frequency — all four, not just one</li>
+            <li>Requirements come from the stakeholder register, org charts/RACI, development approach, and legal requirements</li>
+            <li>Under-communication and over-communication are both failures — the goal is right information, not maximum information</li>
+            <li>Tailoring is continuous, revisited as stakeholders, phases, and needs change</li>
+          </ul>
+        </SynthesisModal>
       )}
       </AnimatePresence>{" "}
       {quiz && (
