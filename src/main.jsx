@@ -29,22 +29,23 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import SynthesisModal from "./SynthesisModal";
-import audienceTailoringImg from "./assets/illustrations/audience-tailoring.png";
-import calibrationImg from "./assets/illustrations/continuous-calibration.png";
-import failuresImg from "./assets/illustrations/communication-failures.png";
-import tailoredOutputsImg from "./assets/illustrations/tailored-outputs.png";
-import underCommunicationCard from "./assets/illustrations/under-communication-card.png";
-import overCommunicationCard from "./assets/illustrations/over-communication-card.png";
-import informationDisposalImg from "./assets/illustrations/information-disposal.png";
-import continuousRecalibrationImg from "./assets/illustrations/continuous-recalibration.png";
-import stakeholderRegisterImg from "./assets/illustrations/stakeholder-register.png";
-import orgChartRaciImg from "./assets/illustrations/org-chart-raci.png";
-import developmentApproachImg from "./assets/illustrations/development-approach.png";
-import legalRequirementsImg from "./assets/illustrations/legal-requirements.png";
-import contentImg from "./assets/illustrations/content.png";
-import formatImg from "./assets/illustrations/format.png";
-import channelImg from "./assets/illustrations/channel.png";
-import frequencyImg from "./assets/illustrations/frequency.png";
+import { IllustrationPlayer } from "./components/IllustrationPlayer";
+import audienceTailoringImg from "./assets/illustrations/audience-tailoring.svg?raw";
+import calibrationImg from "./assets/illustrations/continuous-calibration.svg?raw";
+import failuresImg from "./assets/illustrations/communication-failures.svg?raw";
+import tailoredOutputsImg from "./assets/illustrations/tailored-outputs.svg?raw";
+import underCommunicationCard from "./assets/illustrations/under-communication-card.svg?raw";
+import overCommunicationCard from "./assets/illustrations/over-communication-card.svg?raw";
+import informationDisposalImg from "./assets/illustrations/information-disposal.svg?raw";
+import continuousRecalibrationImg from "./assets/illustrations/continuous-recalibration.svg?raw";
+import stakeholderRegisterImg from "./assets/illustrations/stakeholder-register.svg?raw";
+import orgChartRaciImg from "./assets/illustrations/org-chart-raci.svg?raw";
+import developmentApproachImg from "./assets/illustrations/development-approach.svg?raw";
+import legalRequirementsImg from "./assets/illustrations/legal-requirements.svg?raw";
+import contentImg from "./assets/illustrations/content.svg?raw";
+import formatImg from "./assets/illustrations/format.svg?raw";
+import channelImg from "./assets/illustrations/channel.svg?raw";
+import frequencyImg from "./assets/illustrations/frequency.svg?raw";
 
 const screens = [
   "Audience first",
@@ -234,7 +235,7 @@ function Sheet({ detail, onClose, onRead, modal = false }) {
           <X />
         </button>
         {detail.image ? (
-          <img className="drawer-illustration" src={detail.image} alt="" />
+          <IllustrationPlayer className="drawer-illustration" svg={detail.image} />
         ) : (
           I && (
             <div className="sheet-icon">
@@ -259,10 +260,8 @@ function Sheet({ detail, onClose, onRead, modal = false }) {
     document.body,
   );
 }
-function LessonArt({ src, alt, className = "" }) {
-  return (
-    <img className={`custom-lesson-art ${className}`} src={src} alt={alt} />
-  );
+function LessonArt({ src, className = "" }) {
+  return <IllustrationPlayer className={`custom-lesson-art ${className}`} svg={src} />;
 }
 function App() {
   const [page, setPage] = useState(0),
@@ -420,7 +419,6 @@ function App() {
                           setReveal(true);
                           setDetail({
                             title: "Stakeholder communication works exactly the same way",
-                            kicker: "CLICK-TO-REVEAL",
                             icon: Send,
                             image: informationDisposalImg,
                             text: "Stakeholder communication on a project works exactly the same way. The third enabler of ECO People Task 4, Engage Stakeholders, asks the project manager to analyze and tailor communication — using what the stakeholder analysis already revealed about each stakeholder's power, interest, influence, and impact to determine what information they need, in what format, through what channel, and at what frequency. PMBOK® 8 is blunt about the stakes here: communication that is not tailored to the receiver is not communication — it is information disposal.",
@@ -440,7 +438,6 @@ function App() {
                 {page === 1 && (
                   <div className="calibration">
                     <div>
-                      <p className="eyebrow">SCREEN 2</p>
                       <h2>Tailoring Is Not a One-Time Task</h2>
                       <p>It would be convenient if tailoring communication were something you decided once, during planning, and never touched again. It isn't — and treating it that way is one of the quieter ways stakeholder engagement quietly breaks down.</p>
                       <button
@@ -449,7 +446,6 @@ function App() {
                           setReveal(true);
                           setDetail({
                             title: "Tailoring must be reviewed and adjusted continuously",
-                            kicker: "CLICK-TO-REVEAL",
                             icon: SlidersHorizontal,
                             image: continuousRecalibrationImg,
                             text: "As stakeholder needs shift, as new parties join, and as the project moves through phases, the communication approach has to be reviewed and adjusted continuously. A tailoring plan built at kickoff and never revisited will drift out of step with the stakeholders it was built for — the same way any other plan does when the project around it keeps changing and the plan doesn't.",
@@ -501,7 +497,6 @@ function App() {
                 )}
                 {page === 4 && (
                   <div className="wide">
-                    <p className="eyebrow">SCREEN 5</p>
                     <h2>Why Tailoring Matters: Two Ways to Get It Wrong</h2>
                     <p className="lede">PMBOK® 8 is explicit that stakeholder satisfaction depends on continuous communication. But "continuous" without "tailored" doesn't protect anyone — it just fails in one of two predictable directions. Flip both cards to see them.</p>
                     <div className="flip-grid">
@@ -522,7 +517,7 @@ function App() {
                         const I = f.icon;
                         return (
                           <div className="illustrated-flip" key={f.name}>
-                          <img className="flip-card-art" src={f.image} alt="" />
+                          <IllustrationPlayer className="flip-card-art" svg={f.image} />
                           <button
                             className={`flip ${flips.includes(i) ? "flipped" : ""}`}
                             onClick={() =>
@@ -567,7 +562,7 @@ function App() {
                       alt="One project update tailored into concise executive, detailed technical, and plain-language community outputs"
                     />
                     <div>
-                      <p className="eyebrow">SCREEN 6 · SYNTHESIS (EXAM LENS)</p>
+                      <p className="eyebrow">SYNTHESIS (EXAM LENS)</p>
                       <h2>Every stakeholder on a project sits in a different seat, with a different stake in the outcome — and one idea underlies everything this enabler is testing for.</h2>
                       <button
                         className="primary compact-cta"
